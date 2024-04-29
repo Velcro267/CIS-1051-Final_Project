@@ -1,8 +1,6 @@
 ﻿# The script of the game goes in this file.
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
+###Characters
 define a = Character("AJ", color="#c0397a")
 define l = Character("Liam", color="#9772c4")
 
@@ -33,7 +31,7 @@ label start:
     vector fields and the higgs boson."
     a "Like what does any of that even have to do with African history. Just
     stick to the topic bro."
-    a "And why is music is playing through the loud speakers? 
+    a "And why is music playing through the loud speakers? 
     Nothing seems to make sense today."
 
     
@@ -74,15 +72,17 @@ label start:
 
 
     "Since AJ can't decide her fate, you the viewer will."
+    play music "tension_synths.mp3" fadein 1.5 volume 0.5
+
     menu:
         "Yes, I would really enjoy that!":
             jump choice1
-        "You shouldn't ask such brash questions, baka.":
-            pass
         "Eww get away frome me.":
-            pass 
+            jump choice2 
         "...":
-            pass 
+            jump choice3
+        "You shouldn't ask such brash questions, baka.":
+            jump choice4
     
     label choice1:
         show AJ blush
@@ -95,27 +95,97 @@ label start:
         a "Actually, nevermind. I can't be seen talking to someone who says
         shit like that."
 
-        show Liam sad
+        show Liam apologize
         l "Oh, well alright then. "
         jump theEndingScreen
+    
+    label choice2:
+        show AJ pissed
+        a "Eww get away from me." 
+        hide AJ 
+        
+        show Liam sad
+        l "Wow... ok then."
 
+        jump theEndingScreen
+    
 
+    label choice3:
+        show AJ neutral2
+        a "..."
+
+        show Liam neutral
+        l "Look if the answer is no just say that."
+
+        a "..."
+
+        show Liam angry
+        l "Yea thanks for wasting my time."
+        hide Liam 
+
+        show AJ sad
+        a "Well that was... something."
+
+        jump theEndingScreen
+    
+
+    label choice4:
+        stop music
+        play sound "happy_effect.mp3"
+        show AJ blush
+        a "You shouldn't ask such brash questions, baka."
+
+        show Liam sly 
+        l "Soooo, is that a yes?"
+
+        a "Yea it's a yes."
+
+        show Liam smile2
+        l "Great, well we can go now since were both done with classes!"
+
+        show Liam neutral
+        l "By the way, did you here that sound a couple seconds ago too?"
+
+        show AJ neutral
+        a "Yea werid things have been happening today. Just go with the flow."
+
+        l "Noted."
         
 
 
+    ### Scene 3
+    scene bg outside_urban2
+    with dissolve
+    play music "future_chill_music.mp3" fadein 1.5 volume 0.5
+
+    show AJ happy
+    show Liam happy at left
+
+    a "So what did you have in mind for us to do?"
+
+    show Liam neutral
+    l "Actually I didn't think that far ahead."
+
+    show Liam smile2
+    l "It was challenging enough to just ask you out."
+
+    a "Oh."
+    a "Well I'm down to just talk over some food while we sit outside.
+    The weather is beautiful today."
+
+    l "That sounds lovely."
 
 
 
-
-
-
-    ###Scene 3
 
 
     # This ends the game.
+
     label theEndingScreen:
-        scene bg room
-        stop music fadeout 1.5
+        scene bg outside_urban2
+        "Thus concludes our little story."
+        "If you think there was nothing special about it, thats because 
+        it was just another day :)"
         "The End"
 
         return
